@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.confort-plus65.com)"
+    ],
+    "deny": []
+  }
+}
