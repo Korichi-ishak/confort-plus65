@@ -118,7 +118,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-6">Nos Services</h4>
             <ul className="space-y-3">
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <motion.li key={service.name}>
                   <a 
                     href={service.href}
@@ -140,7 +140,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-6">Liens Rapides</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
+              {quickLinks.map((link) => (
                 <motion.li key={link.name}>
                   <a 
                     href={link.href}
@@ -156,7 +156,7 @@ const Footer = () => {
             <div className="mt-8">
               <h5 className="text-sm font-semibold text-white mb-4">Suivez-nous</h5>
               <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <motion.a
                     key={social.name}
                     href={social.href}
