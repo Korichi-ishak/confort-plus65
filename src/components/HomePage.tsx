@@ -1,49 +1,63 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Award, Tags, SlidersHorizontal, Users, Clock, MapPin, HeartHandshake, Briefcase } from 'lucide-react';
 
-const HomePage = () => {
+type FormType = 'consultation' | 'service' | 'job' | 'partnership';
+
+interface HomePageProps {
+  openModal: (formType: FormType, serviceName?: string) => void;
+}
+
+const HomePage = ({ openModal }: HomePageProps) => {
   const [activeService, setActiveService] = useState(0);
 
   const services = [
     {
       title: 'Aide ménagère',
       description: 'Entretien professionnel de votre domicile avec soin et attention aux détails',
-      price: '13,99$ CAD/h',
+      price: '13,99$ /h',
       features: ['Nettoyage complet', 'Lessive et repassage', 'Organisation des espaces'],
       color: 'emerald',
-      bgGradient: 'from-emerald-500 to-teal-600'
+      bgGradient: 'from-emerald-500 to-teal-600',
+      imageUrl: '/images/caregiver-help-and-care-asian-senior-or-elderly-old-lady-woman-patient-sitting-on-wheelchair-at-home-photo.jpg'
     },
     {
       title: 'Préparation de repas',
       description: 'Repas équilibrés et savoureux adaptés à vos goûts et besoins nutritionnels',
-      price: '16,99$ CAD/h',
+      price: '16,99$ /h',
       features: ['Courses incluses', 'Régimes spéciaux', 'Planification des menus'],
       color: 'green',
-      bgGradient: 'from-green-500 to-emerald-600'
+      bgGradient: 'from-green-500 to-emerald-600',
+      imageUrl: '/images/preparation-repas.jpg'
     },
     {
       title: 'Accompagnement',
       description: 'Transport sécurisé et accompagnement pour vos rendez-vous et sorties',
-      price: '16,99$ CAD/h',
+      price: '16,99$ /h',
       features: ['Transport médical', 'Accompagnement sorties', 'Présence rassurante'],
       color: 'teal',
-      bgGradient: 'from-teal-500 to-cyan-600'
+      bgGradient: 'from-teal-500 to-cyan-600',
+      imageUrl: '/images/20240806_180705_0000.png'
     },
     {
       title: 'Soins personnels',
       description: 'Aide bienveillante pour l\'hygiène et le bien-être quotidien',
-      price: '16,99$ CAD/h',
+      price: '16,99$ /h',
       features: ['Toilette complète', 'Soins de confort', 'Aide à la mobilité'],
       color: 'cyan',
-      bgGradient: 'from-cyan-500 to-blue-600'
+      bgGradient: 'from-cyan-500 to-blue-600',
+      imageUrl: '/images/blog-banner-caregiver-help-2.jpg'
     },
     {
       title: 'Courses et commissions',
       description: 'Gestion de vos achats et démarches administratives du quotidien',
-      price: '12,99$ CAD/h',
+      price: '12,99$ /h',
       features: ['Épicerie', 'Pharmacie', 'Démarches administratives'],
       color: 'lime',
-      bgGradient: 'from-lime-500 to-green-600'
+      bgGradient: 'from-lime-500 to-green-600',
+      imageUrl: '/images/pexels-photo-18509799.webp'
     }
   ];
 
@@ -53,21 +67,24 @@ const HomePage = () => {
       location: 'Région de Québec',
       text: 'Grâce à Confort Plus65, je peux continuer à vivre chez moi dans le confort et la sécurité. L\'équipe comprend parfaitement mes besoins.',
       rating: 5,
-      service: 'Maintien à domicile'
+      service: 'Maintien à domicile',
+      photoUrl: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'
     },
     {
       name: 'Robert D.',
       location: 'Québec',
       text: 'Un service remarquable qui respecte mon rythme de vie. Je me sens en confiance et bien accompagné au quotidien.',
       rating: 5,
-      service: 'Services personnalisés'
+      service: 'Services personnalisés',
+      photoUrl: 'https://i.pravatar.cc/150?u=a042581f4e29026704d'
     },
     {
       name: 'Francine M.',
       location: 'Région de Québec',
       text: 'L\'aide apportée me permet de garder mon autonomie tout en ayant l\'assurance d\'un soutien professionnel. Excellente qualité.',
       rating: 5,
-      service: 'Aide aux personnes âgées'
+      service: 'Aide aux personnes âgées',
+      photoUrl: 'https://i.pravatar.cc/150?u=a04258114e29026702d'
     }
   ];
 
@@ -79,7 +96,8 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
+
       {/* Hero Section */}
       <section id="accueil" className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-gray-900 text-white overflow-hidden min-h-screen flex items-center">
         {/* Background Pattern */}
@@ -139,6 +157,7 @@ const HomePage = () => {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <motion.button
+                  onClick={() => openModal('consultation')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center space-x-3 text-lg"
@@ -148,14 +167,15 @@ const HomePage = () => {
                   <div className="w-6 h-0.5 bg-white rounded-full"></div>
                 </motion.button>
 
-                <motion.button
+                <motion.a
+                  href="tel:5142228271"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-gray-600 text-gray-300 hover:border-emerald-400 hover:text-emerald-400 px-10 py-5 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-3 text-lg backdrop-blur-sm"
+                  className="bg-gray-800 hover:bg-gray-700 text-white px-10 py-5 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-3 text-lg"
                 >
                   <div className="w-4 h-4 border-2 border-current rounded-full"></div>
                   <span>514 222 8271</span>
-                </motion.button>
+                </motion.a>
               </motion.div>
 
               {/* Stats */}
@@ -163,7 +183,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8 border-t border-gray-700"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8"
               >
                 {stats.map((stat, index) => (
                   <div key={stat.label} className="text-center">
@@ -188,43 +208,28 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-12 shadow-2xl overflow-hidden">
-                {/* Background pattern */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='white' fill-opacity='0.3'%3E%3Cpath d='M20 20c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8 8 3.6 8 8zm0-20c0 4.4-3.6 8-8 8s-8-3.6-8-8 3.6-8 8-8 8 3.6 8 8z'/%3E%3C/g%3E%3C/svg%3E")`
-                  }}></div>
-                </div>
-                
-                <div className="relative z-10 text-center text-white">
-                  <div className="w-24 h-24 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center backdrop-blur-sm">
-                    <div className="w-12 h-12 border-4 border-white/60 rounded-full"></div>
+              <div className="relative rounded-3xl shadow-2xl overflow-hidden">
+                <Carousel
+                  autoPlay
+                  infiniteLoop
+                  showThumbs={false}
+                  showStatus={false}
+                  interval={5000}
+                  className="hero-carousel"
+                >
+                  <div>
+                    <img src="/images/caregiver-help-and-care-asian-senior-or-elderly-old-lady-woman-patient-sitting-on-wheelchair-at-home-photo.jpg" alt="Image 1" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
                   </div>
-                  
-                  <h3 className="text-3xl font-bold mb-6">Services personnalisés</h3>
-                  <p className="text-xl opacity-90 leading-relaxed">
-                    Adaptés à vos besoins spécifiques et votre rythme de vie
-                  </p>
-                  
-                  <div className="mt-8 flex justify-center space-x-4">
-                    <div className="w-3 h-3 bg-white/60 rounded-full"></div>
-                    <div className="w-3 h-3 bg-white/80 rounded-full"></div>
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  <div>
+                    <img src="/images/caregiver-embracing-senior-in-park-free-photo.jpg" alt="Image 2" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
                   </div>
-                </div>
-                
-                {/* Floating geometric elements */}
-                <motion.div
-                  animate={{ y: [-10, 10, -10], rotate: [0, 180, 360] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -top-6 -right-6 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl transform rotate-45"
-                ></motion.div>
-                
-                <motion.div
-                  animate={{ y: [10, -10, 10], rotate: [360, 180, 0] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute -bottom-6 -left-6 w-16 h-16 border-2 border-white/30 rounded-full"
-                ></motion.div>
+                  <div>
+                    <img src="/images/20240806_180705_0000.png" alt="Image 3" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
+                  </div>
+                  <div>
+                    <img src="/images/blog-banner-caregiver-help-2.jpg" alt="Image 4" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
+                  </div>
+                </Carousel>
               </div>
             </motion.div>
           </div>
@@ -262,9 +267,9 @@ const HomePage = () => {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                <div className={`w-3 h-3 rounded-full mr-3 inline-block ${
-                  activeService === index ? 'bg-white/80' : `bg-${service.color}-500`
-                }`}></div>
+                {activeService === index && (
+                  <div className="w-3 h-3 rounded-full mr-3 inline-block bg-white/80 animate-pulse"></div>
+                )}
                 {service.title}
               </motion.button>
             ))}
@@ -276,92 +281,79 @@ const HomePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-12 lg:p-16 shadow-2xl border border-gray-100"
+            className="bg-white rounded-3xl shadow-2xl p-10 lg:p-16 max-w-6xl mx-auto border border-gray-100"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <div className="mb-8">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${services[activeService].bgGradient} rounded-2xl mb-6 flex items-center justify-center`}>
-                    <div className="w-8 h-8 bg-white/30 rounded-lg"></div>
-                  </div>
-                  <h3 className="text-4xl font-bold text-gray-900 mb-4">
-                    {services[activeService].title}
-                  </h3>
-                  <div className={`text-3xl font-bold bg-gradient-to-r ${services[activeService].bgGradient} bg-clip-text text-transparent`}>
-                    {services[activeService].price}
-                  </div>
-                </div>
-                
-                <p className="text-xl text-gray-600 mb-10 leading-relaxed">
+                <motion.h3
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className={`text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r ${services[activeService].bgGradient}`}
+                >
+                  {services[activeService].title}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="text-xl text-gray-600 mb-8"
+                >
                   {services[activeService].description}
-                </p>
-
-                <ul className="space-y-4 mb-10">
-                  {services[activeService].features.map((feature, index) => (
+                </motion.p>
+                <motion.ul
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } }
+                  }}
+                  className="space-y-4 mb-8"
+                >
+                  {services[activeService].features.map((feature) => (
                     <motion.li
                       key={feature}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="flex items-center text-gray-700 text-lg"
+                      variants={{
+                        hidden: { y: 20, opacity: 0 },
+                        visible: { y: 0, opacity: 1 }
+                      }}
+                      className="flex items-center text-lg"
                     >
-                      <div className={`w-6 h-6 bg-gradient-to-r ${services[activeService].bgGradient} rounded-full mr-4 flex items-center justify-center`}>
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      <div className={`w-6 h-6 rounded-full mr-4 flex-shrink-0 bg-gradient-to-r ${services[activeService].bgGradient} flex items-center justify-center`}>
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                       </div>
-                      {feature}
+                      <span className="text-gray-800">{feature}</span>
                     </motion.li>
                   ))}
-                </ul>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`bg-gradient-to-r ${services[activeService].bgGradient} text-white px-10 py-5 rounded-2xl font-semibold shadow-xl transition-all duration-300 text-lg`}
-                >
-                  Demander un devis
-                </motion.button>
+                </motion.ul>
               </div>
 
-              <div className="relative">
-                <div className={`bg-gradient-to-br ${services[activeService].bgGradient} rounded-3xl p-12 text-center text-white relative overflow-hidden`}>
-                  {/* Background pattern */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute inset-0" style={{
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='white' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/svg%3E")`
-                    }}></div>
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-32 h-32 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center backdrop-blur-sm">
-                      <div className="w-16 h-16 border-4 border-white/60 rounded-2xl flex items-center justify-center">
-                        <div className="w-6 h-6 bg-white/80 rounded-full"></div>
-                      </div>
-                    </div>
-                    
-                    <h4 className="text-3xl font-bold mb-6">Service personnalisé</h4>
-                    <p className="text-xl opacity-90 leading-relaxed">
-                      Chaque intervention est adaptée à vos besoins spécifiques et vos préférences personnelles.
-                    </p>
-                    
-                    <div className="mt-10 flex justify-center space-x-3">
-                      <div className="w-4 h-4 bg-white/60 rounded-full"></div>
-                      <div className="w-4 h-4 bg-white/80 rounded-full"></div>
-                      <div className="w-4 h-4 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating elements */}
+              <div className="text-center md:text-left">
+                <motion.div 
+                  className="mb-8"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <img src={services[activeService].imageUrl} alt={services[activeService].title} style={{objectFit: 'cover', width: '100%', height: '300px', borderRadius: '1.5rem'}} />
+                </motion.div>
+                
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                   <motion.div
-                    animate={{ y: [-15, 15, -15], rotate: [0, 180, 360] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-6 -right-6 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-3xl transform rotate-45"
-                  ></motion.div>
-                  
-                  <motion.div
-                    animate={{ y: [15, -15, 15], rotate: [360, 180, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -bottom-6 -left-6 w-20 h-20 border-2 border-white/30 rounded-full"
-                  ></motion.div>
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className={`inline-block p-6 rounded-2xl bg-gradient-to-br ${services[activeService].bgGradient} shadow-lg text-white text-center`}
+                  >
+                    <p className="text-xl font-medium">À partir de</p>
+                    <p className="text-5xl font-bold">{services[activeService].price.split('/')[0]}</p>
+                    <p className="text-xl font-medium">/h</p>
+                  </motion.div>
+                  <motion.button
+                    onClick={() => openModal('service', services[activeService].title)}
+                   className="bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-gray-900 w-full md:w-auto flex-grow"
+                  >
+                    Planifier ce service
+                  </motion.button>
                 </div>
               </div>
             </div>
@@ -386,52 +378,32 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ y: -8 }}
-                className="bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                key={index}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="bg-white rounded-3xl p-10 shadow-lg border border-gray-100 flex flex-col items-center text-center"
               >
-                {/* Rating dots */}
-                <div className="flex justify-center mb-8 space-x-2">
+                <img 
+                  src={testimonial.photoUrl} 
+                  alt={testimonial.name} 
+                  className="w-24 h-24 rounded-full mb-6 object-cover shadow-md border-4 border-white"
+                />
+                <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.3, delay: i * 0.1 }}
-                      className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full"
-                    ></motion.div>
+                    <svg key={i} className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.367 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.367-2.448a1 1 0 00-1.176 0l-3.367 2.448c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.05 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z" />
+                    </svg>
                   ))}
                 </div>
-                
-                {/* Quote */}
-                <blockquote className="text-gray-700 text-xl mb-10 text-center leading-relaxed font-medium">
-                  "{testimonial.text}"
-                </blockquote>
-                
-                {/* Client Info */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center">
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="font-bold text-gray-900 text-xl mb-2">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-gray-500 text-lg mb-4">
-                    {testimonial.location}
-                  </div>
-                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 rounded-full text-base font-medium">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></div>
-                    Service: {testimonial.service}
-                  </div>
+                <p className="text-lg text-gray-700 italic mb-6">"{testimonial.text}"</p>
+                <div className="mt-auto">
+                  <p className="font-bold text-lg text-gray-900">{testimonial.name}</p>
+                  <p className="text-gray-500">{testimonial.location}</p>
+                  <p className="text-sm text-emerald-600 font-semibold mt-2">{testimonial.service}</p>
                 </div>
               </motion.div>
             ))}
@@ -471,7 +443,7 @@ const HomePage = () => {
                 
                 <div className="relative z-10 text-center">
                   <div className="w-24 h-24 bg-white/20 rounded-full mx-auto mb-8 flex items-center justify-center backdrop-blur-sm">
-                    <div className="w-12 h-12 border-4 border-white/60 rounded-full"></div>
+                    <HeartHandshake className="w-12 h-12 text-white/80" />
                   </div>
                   <h3 className="text-3xl font-bold mb-6">Notre Mission</h3>
                   <p className="text-xl leading-relaxed">
@@ -534,32 +506,38 @@ const HomePage = () => {
               {
                 title: 'Expérience depuis 2013',
                 description: 'Plus de 10 ans d\'expertise dans l\'accompagnement des personnes âgées à domicile',
-                gradient: 'from-emerald-500 to-teal-600'
+                gradient: 'from-emerald-500 to-teal-600',
+                icon: Award
               },
               {
                 title: 'Tarifs transparents',
                 description: 'Des prix clairs et compétitifs sans frais cachés. Consultation gratuite pour évaluer vos besoins',
-                gradient: 'from-green-500 to-emerald-600'
+                gradient: 'from-green-500 to-emerald-600',
+                icon: Tags
               },
               {
                 title: 'Services personnalisés',
                 description: 'Chaque plan de soins est adapté aux besoins spécifiques et au rythme de vie de nos clients',
-                gradient: 'from-teal-500 to-cyan-600'
+                gradient: 'from-teal-500 to-cyan-600',
+                icon: SlidersHorizontal
               },
               {
                 title: 'Équipe qualifiée',
                 description: 'Personnel formé et expérimenté dans l\'aide aux personnes âgées et à mobilité réduite',
-                gradient: 'from-cyan-500 to-blue-600'
+                gradient: 'from-cyan-500 to-blue-600',
+                icon: Users
               },
               {
                 title: 'Flexibilité horaire',
                 description: 'Services adaptés à vos horaires et disponibilités, 7 jours sur 7',
-                gradient: 'from-blue-500 to-indigo-600'
+                gradient: 'from-blue-500 to-indigo-600',
+                icon: Clock
               },
               {
                 title: 'Région de Québec',
                 description: 'Connaissance approfondie de la région et proximité pour un service réactif',
-                gradient: 'from-indigo-500 to-purple-600'
+                gradient: 'from-indigo-500 to-purple-600',
+                icon: MapPin
               }
             ].map((avantage, index) => (
               <motion.div
@@ -571,7 +549,7 @@ const HomePage = () => {
                 className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${avantage.gradient} rounded-2xl mb-6 flex items-center justify-center`}>
-                  <div className="w-8 h-8 bg-white/30 rounded-lg"></div>
+                  <avantage.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{avantage.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{avantage.description}</p>
@@ -675,6 +653,7 @@ const HomePage = () => {
                 
                 <div className="flex flex-col gap-6">
                   <motion.button
+                    onClick={() => openModal('consultation')}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300"
@@ -683,7 +662,7 @@ const HomePage = () => {
                   </motion.button>
                   
                   <motion.a
-                    href="tel:514-222-8271"
+                    href="tel:5142228271"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-emerald-600"
@@ -722,7 +701,7 @@ const HomePage = () => {
               className="bg-white rounded-3xl p-12 shadow-xl text-center"
             >
               <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full mx-auto mb-8 flex items-center justify-center">
-                <div className="w-12 h-12 bg-white/30 rounded-full"></div>
+                <Briefcase className="w-12 h-12 text-white/80" />
               </div>
               
               <h3 className="text-3xl font-bold text-gray-900 mb-6">
@@ -755,6 +734,7 @@ const HomePage = () => {
               </div>
 
               <motion.button
+                onClick={() => openModal('job')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg transition-all duration-300"
@@ -863,6 +843,7 @@ const HomePage = () => {
                 </div>
 
                 <motion.button
+                  onClick={() => openModal('partnership')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-teal-600 px-8 py-4 rounded-2xl font-semibold text-lg mt-8 w-full transition-all duration-300"

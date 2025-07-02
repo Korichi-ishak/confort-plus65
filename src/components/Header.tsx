@@ -1,21 +1,27 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-const Header = () => {
+type FormType = 'consultation' | 'service' | 'job' | 'partnership';
+
+interface HeaderProps {
+  openModal: (formType: FormType) => void;
+}
+
+const Header = ({ openModal }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const mainNavItems = [
+  const mainNavItems: { name: string; href: string; action?: () => void; }[] = [
     { name: 'Accueil', href: '#' },
     { name: 'À propos', href: '#apropos' },
     { name: 'Services', href: '#services' },
     { name: 'Contact', href: '#contact' }
   ];
 
-  const dropdownItems = [
+  const dropdownItems: { name: string; href?: string; action?: () => void; }[] = [
     { name: 'Avantages concurrentiels', href: '#avantages' },
-    { name: 'Offres d\'emploi', href: '#emploi' },
-    { name: 'Partenariat', href: '#partenariat' }
+    { name: 'Offres d\'emploi', action: () => openModal('job') },
+    { name: 'Partenariat', action: () => openModal('partnership') }
   ];
 
   return (
@@ -105,14 +111,20 @@ const Header = () => {
                 {dropdownItems.map((item, index) => (
                   <motion.a
                     key={item.name}
-                    href={item.href}
+                    href={item.href || '#'}
+                    onClick={(e) => {
+                      if (item.action) {
+                        e.preventDefault();
+                        item.action();
+                      }
+                      setIsDropdownOpen(false);
+                    }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ 
                       opacity: isDropdownOpen ? 1 : 0, 
                       x: isDropdownOpen ? 0 : -20 
                     }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    onClick={() => setIsDropdownOpen(false)}
                     className="block px-6 py-4 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 border-b border-gray-100 last:border-b-0"
                   >
                     <div className="flex items-center space-x-3">
@@ -128,6 +140,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
             <motion.button
+              onClick={() => openModal('consultation')}
               whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(16, 185, 129, 0.3)" }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
@@ -172,11 +185,17 @@ const Header = () => {
           {mainNavItems.map((item, index) => (
             <motion.a
               key={item.name}
-              href={item.href}
+              href={item.href || '#'}
+              onClick={(e) => {
+                if (item.action) {
+                  e.preventDefault();
+                  item.action();
+                }
+                setIsMenuOpen(false);
+              }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: isMenuOpen ? 1 : 0, x: isMenuOpen ? 0 : -20 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              onClick={() => setIsMenuOpen(false)}
               className="block px-4 py-3 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg font-medium transition-all"
             >
               {item.name}
@@ -191,12 +210,18 @@ const Header = () => {
             {dropdownItems.map((item, index) => (
               <motion.a
                 key={item.name}
-                href={item.href}
+                href={item.href || '#'}
+                onClick={(e) => {
+                  if (item.action) {
+                    e.preventDefault();
+                    item.action();
+                  }
+                  setIsMenuOpen(false);
+                }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: isMenuOpen ? 1 : 0, x: isMenuOpen ? 0 : -20 }}
                 transition={{ duration: 0.3, delay: (mainNavItems.length + index) * 0.1 }}
-                onClick={() => setIsMenuOpen(false)}
-                className="block px-4 py-2 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all flex items-center space-x-3"
+                className="block px-4 py-2 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all items-center space-x-3"
               >
                 <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                 <span>{item.name}</span>
