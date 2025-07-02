@@ -154,7 +154,7 @@ const HomePage = () => {
                   className="border-2 border-gray-600 text-gray-300 hover:border-emerald-400 hover:text-emerald-400 px-10 py-5 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-3 text-lg backdrop-blur-sm"
                 >
                   <div className="w-4 h-4 border-2 border-current rounded-full"></div>
-                  <span>(418) 123-4567</span>
+                  <span>514 222 8271</span>
                 </motion.button>
               </motion.div>
 
@@ -615,7 +615,7 @@ const HomePage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Téléphone</h4>
-                      <p className="text-gray-600">(418) 123-4567</p>
+                      <p className="text-gray-600">514 222 8271</p>
                     </div>
                   </div>
 
@@ -624,8 +624,8 @@ const HomePage = () => {
                       <div className="w-6 h-6 bg-teal-500 rounded-full"></div>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Email</h4>
-                      <p className="text-gray-600">info@confort-plus65.com</p>
+                      <h4 className="font-semibold text-gray-900">Fax</h4>
+                      <p className="text-gray-600">514 222-8271</p>
                     </div>
                   </div>
 
@@ -634,8 +634,18 @@ const HomePage = () => {
                       <div className="w-6 h-6 bg-cyan-500 rounded-full"></div>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Zone de service</h4>
-                      <p className="text-gray-600">Région de Québec</p>
+                      <h4 className="font-semibold text-gray-900">Email</h4>
+                      <p className="text-gray-600">confortplus65@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Adresse</h4>
+                      <p className="text-gray-600">3242, Avenue Gonthier.Suite A<br />Montréal.Qc. H1L 6J9</p>
                     </div>
                   </div>
 
@@ -673,7 +683,7 @@ const HomePage = () => {
                   </motion.button>
                   
                   <motion.a
-                    href="tel:418-123-4567"
+                    href="tel:514-222-8271"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-emerald-600"
