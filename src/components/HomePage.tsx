@@ -21,7 +21,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       features: ['Nettoyage complet', 'Lessive et repassage', 'Organisation des espaces'],
       color: 'emerald',
       bgGradient: 'from-emerald-500 to-teal-600',
-      imageUrl: '/images/caregiver-help-and-care-asian-senior-or-elderly-old-lady-woman-patient-sitting-on-wheelchair-at-home-photo.jpg'
+      imageUrl: '/images/aide-menagere.jpg'
     },
     {
       title: 'Préparation de repas',
@@ -30,7 +30,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       features: ['Courses incluses', 'Régimes spéciaux', 'Planification des menus'],
       color: 'green',
       bgGradient: 'from-green-500 to-emerald-600',
-      imageUrl: '/images/preparation-repas.jpg'
+      imageUrl: '/images/preparation-repas-senior.jpg'
     },
     {
       title: 'Accompagnement',
@@ -39,7 +39,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       features: ['Transport médical', 'Accompagnement sorties', 'Présence rassurante'],
       color: 'teal',
       bgGradient: 'from-teal-500 to-cyan-600',
-      imageUrl: '/images/20240806_180705_0000.png'
+      imageUrl: '/images/aide-a-la-marche-senior.jpg'
     },
     {
       title: 'Soins personnels',
@@ -48,7 +48,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       features: ['Toilette complète', 'Soins de confort', 'Aide à la mobilité'],
       color: 'cyan',
       bgGradient: 'from-cyan-500 to-blue-600',
-      imageUrl: '/images/blog-banner-caregiver-help-2.jpg'
+      imageUrl: '/images/lecture-personne-agee.jpg'
     },
     {
       title: 'Courses et commissions',
@@ -57,7 +57,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       features: ['Épicerie', 'Pharmacie', 'Démarches administratives'],
       color: 'lime',
       bgGradient: 'from-lime-500 to-green-600',
-      imageUrl: '/images/pexels-photo-18509799.webp'
+      imageUrl: '/images/aide-aux-courses-personne-agee.jpg'
     }
   ];
 
@@ -68,7 +68,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       text: 'Grâce à Confort Plus65, je peux continuer à vivre chez moi dans le confort et la sécurité. L\'équipe comprend parfaitement mes besoins.',
       rating: 5,
       service: 'Maintien à domicile',
-      photoUrl: 'https://i.pravatar.cc/150?u=a042581f4e29026024d'
+      photoUrl: '/images/femme.jpg'
     },
     {
       name: 'Robert D.',
@@ -76,7 +76,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       text: 'Un service remarquable qui respecte mon rythme de vie. Je me sens en confiance et bien accompagné au quotidien.',
       rating: 5,
       service: 'Services personnalisés',
-      photoUrl: 'https://i.pravatar.cc/150?u=a042581f4e29026704d'
+      photoUrl: '/images/homme.jpg'
     },
     {
       name: 'Francine M.',
@@ -84,7 +84,7 @@ const HomePage = ({ openModal }: HomePageProps) => {
       text: 'L\'aide apportée me permet de garder mon autonomie tout en ayant l\'assurance d\'un soutien professionnel. Excellente qualité.',
       rating: 5,
       service: 'Aide aux personnes âgées',
-      photoUrl: 'https://i.pravatar.cc/150?u=a04258114e29026702d'
+      photoUrl: '/images/femme2.jpg'
     }
   ];
 
@@ -214,20 +214,17 @@ const HomePage = ({ openModal }: HomePageProps) => {
                   infiniteLoop
                   showThumbs={false}
                   showStatus={false}
-                  interval={5000}
+                  interval={3000}
                   className="hero-carousel"
                 >
                   <div>
-                    <img src="/images/caregiver-help-and-care-asian-senior-or-elderly-old-lady-woman-patient-sitting-on-wheelchair-at-home-photo.jpg" alt="Image 1" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
+                    <img src="/images/carousel1.jpg" alt="Soins à domicile pour personnes âgées" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
                   </div>
                   <div>
-                    <img src="/images/caregiver-embracing-senior-in-park-free-photo.jpg" alt="Image 2" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
+                    <img src="/images/carousel2.jpg" alt="Accompagnement et soutien pour seniors" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
                   </div>
                   <div>
-                    <img src="/images/20240806_180705_0000.png" alt="Image 3" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
-                  </div>
-                  <div>
-                    <img src="/images/blog-banner-caregiver-help-2.jpg" alt="Image 4" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
+                    <img src="/images/carousel3.jpg" alt="Aide et confort pour le maintien à domicile" style={{height: '400px', width: '100%', objectFit: 'cover', borderRadius: '1.5rem'}} />
                   </div>
                 </Carousel>
               </div>

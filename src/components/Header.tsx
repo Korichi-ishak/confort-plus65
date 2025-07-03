@@ -35,25 +35,9 @@ const Header = ({ openModal }: HeaderProps) => {
         <div className="flex justify-between items-center h-20">
           
           {/* Logo */}
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            className="flex items-center space-x-3"
-          >
-            <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
-                </svg>
-              </div>
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl opacity-20 animate-pulse"></div>
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                Confort Plus65
-              </h1>
-              <p className="text-xs text-emerald-600 font-medium">Services à domicile depuis 2013</p>
-            </div>
-          </motion.div>
+          <motion.a href="#" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+            <img src="/images/logo.png" alt="Confort Plus65" className="h-24 w-auto" />
+          </motion.a>
 
           {/* Navigation Desktop */}
           <nav className="hidden lg:flex items-center space-x-1">

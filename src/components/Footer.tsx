@@ -70,17 +70,11 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
-                <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
-                </svg>
+            <a href="#" className="inline-block mb-6 group">
+              <div className="bg-white p-2 rounded-2xl shadow-lg transform transition-transform duration-300 group-hover:scale-105">
+                <img src="/images/logo.png" alt="Confort Plus65" className="h-28 w-auto" />
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">Confort Plus65</h3>
-                <p className="text-sm text-gray-400">Services à domicile depuis 2013</p>
-              </div>
-            </div>
+            </a>
             
             <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-md">
               Votre choix est de rester dans le confort de votre domicile ? Nous pouvons vous aider.
