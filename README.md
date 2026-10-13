@@ -1,35 +1,34 @@
-# Vite + React + TypeScript + TailwindCSS v3 Template
+# Confort Plus 65 — refonte du site
 
-This is a ready-to-clone template for starting new projects instantly. It includes:
-- Vite + React + TypeScript
-- TailwindCSS v3 (with config file)
-- Framer Motion
-- React Navigation
-- Pre-configured folder structure for components, layouts, UI, theme, hooks, lib, types, constants, data, styles, and assets
-- `.gitkeep` files in empty folders to ensure they are tracked by git
-- `config` for centralizing colors, assets, themes, and fonts setup
+Refonte du site de **Confort Plus 65**, une entreprise de services à domicile au Québec. L'objectif : un site plus clair et plus rassurant, qui présente les services et permet de faire une demande en ligne.
 
-## Folder Structure
+## Ce qu'il contient
 
-- `src/components` – Reusable UI components
-- `src/layout` – Layout components (wrappers, page layouts)
-- `src/ui` – UI primitives or atomic components
-- `src/theme` – Theme-related utilities (can be used for Tailwind or styled-components)
-- `src/hooks` – Custom React hooks
-- `src/lib` – Utility functions and libraries
-- `src/types` – TypeScript type definitions
-- `src/constants` – App-wide constants
-- `src/data` – Static data or mock data
-- `src/styles` – Global or shared styles
-- `src/assets` – Static assets (images, SVGs, etc.)
-- `src/config` – Centralized configuration for colors, fonts, themes, and assets
+- Page d'accueil : services, avantages, présentation de l'entreprise
+- En-tête et pied de page avec la navigation et les coordonnées
+- Fenêtre de demande (formulaire) — l'envoi n'est pas encore relié à un service d'e-mail
 
-## Best Practices
+## Stack
 
-- **Always use config files**: Import colors, fonts, themes, and asset paths from the files in `src/config` instead of hardcoding values. This keeps your design system consistent and easy to update.
-- **Always create components**: Build your UI by creating reusable components in `src/components` or `src/ui`. Avoid writing raw JSX or logic directly in pages or the root `App.tsx`—this makes your codebase scalable and maintainable.
+React · TypeScript · Vite · Tailwind CSS · Framer Motion · React Icons
 
-## Usage
-1. Clone this repo
-2. Run `npm install`
-3. Start building your app!
+## Lancer en local
+
+```bash
+npm install
+npm run dev
+```
+
+## Structure
+
+```
+src/components/HomePage.tsx    page d'accueil
+src/components/Header.tsx      navigation
+src/components/FormModal.tsx   formulaire de demande
+src/components/Footer.tsx      pied de page
+objectif.md                    analyse du site actuel et objectifs de la refonte
+```
+
+---
+
+Réalisé par **Ishak Korichi** · [korichi-ishak.vercel.app](https://korichi-ishak.vercel.app)
